@@ -62,17 +62,18 @@
 <script>
   window.onload=function(){
 
-    $(".whell").mousedown(function(e){
-      e.preventDefault()
-    })
-    $(".whell").mousemove(function(e){
-      e.preventDefault()
-    })
+//    $(".whell").mousedown(function(e){
+//      e.preventDefault()
+//    })
+//    $(".whell").mousemove(function(e){
+//      e.preventDefault()
+//    })
 
     var marginL;
     var num=0;
     var width=$(window).width();
-    touch.on("body","dragstart",".box",function(){
+    touch.on("body","dragstart",".box",function(e){
+      e.preventDefault()
       marginL=parseInt($(".box").css("marginLeft"))?parseInt($(".box").css("marginLeft")):0;
       $(".box").css({
         transition:"none"
@@ -80,11 +81,13 @@
 
     });
     touch.on("body","drag",".box",function(e){
+      e.preventDefault()
       $(".box").css({
         marginLeft:marginL + e.x
       })
     })
     touch.on("body","dragend",".box",function(e){
+      e.preventDefault()
       if(Math.abs(e.x)>100){
         if(e.direction=="left"){
           num++;
